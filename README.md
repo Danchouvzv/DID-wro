@@ -77,13 +77,87 @@
 
 ## 📸 Team & Vehicle Photos
 
-> Place your team photo and vehicle photos in `/docs/photos/` and link them here.
+<div align="center">
+
+### 👥 Team DID
+
+<img src="https://cdn.phototourl.com/free/2026-04-11-1fdffe33-7abd-48c5-a2cc-6247d3ccaf62.jpg" width="700" alt="Team DID — Alishirov Imran, Talgatov Daniyal, Kydyrbai Darkhan" />
+
+*Alishirov Imran · Talgatov Daniyal · Kydyrbai Darkhan — NIS S&Md Nauryzbay, Almaty*
+
+</div>
+
+---
+
+### 🤖 Robot Gallery
 
 <div align="center">
 
-| 👥 Team | 🔵 Front | 🔴 Back | ◀️ Left | ▶️ Right | 🔼 Top | 🔽 Bottom |
-|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `docs/photos/team.jpg` | `docs/photos/front.jpg` | `docs/photos/back.jpg` | `docs/photos/left.jpg` | `docs/photos/right.jpg` | `docs/photos/top.jpg` | `docs/photos/bottom.jpg` |
+<table>
+<tr>
+<td align="center" width="50%">
+
+**🏁 Final Robot (V3.0)**
+
+<img src="https://cdn.phototourl.com/free/2026-04-11-862c7e57-4575-4d82-a890-42ec4635917f.jpg" width="340" alt="Final robot V3.0" />
+
+</td>
+<td align="center" width="50%">
+
+**🔴 First Version (V1.0)**
+
+<img src="https://cdn.phototourl.com/free/2026-04-11-80bbe8e7-b78a-4990-a897-acf4f89c5c84.jpg" width="340" alt="First version of robot V1.0" />
+
+</td>
+</tr>
+<tr>
+<td align="center">
+
+**🧠 EV3 Intelligent Brick**
+
+<img src="https://cdn.phototourl.com/free/2026-04-11-a91083e0-018f-4f7b-91f4-a46663bbfab0.webp" width="340" alt="LEGO EV3 Intelligent Brick" />
+
+</td>
+<td align="center">
+
+**🌈 Color Sensor (Mode 4 Raw RGB)**
+
+<img src="https://cdn.phototourl.com/free/2026-04-11-225e02fb-3531-432a-b2df-cf4e1bb58380.webp" width="340" alt="EV3 Color Sensor with light shield" />
+
+</td>
+</tr>
+</table>
+
+</div>
+
+---
+
+### 🛠️ Behind the Scenes
+
+<div align="center">
+
+<table>
+<tr>
+<td align="center" width="50%">
+
+**💻 Experiments & Coding Sessions**
+
+<img src="https://cdn.phototourl.com/free/2026-04-11-4ec1435a-8fc1-42af-9eb8-b4a875a43240.jpg" width="340" alt="Team coding and testing sessions" />
+
+*PID tuning, sensor calibration, code iteration*
+
+</td>
+<td align="center" width="50%">
+
+**🚨 Emergency Repair — Competition Day**
+
+<img src="https://cdn.phototourl.com/free/2026-04-11-a74337ba-7737-4eb8-81b0-ad1c9d208df6.jpg" width="340" alt="Emergency repair in car on competition day" />
+
+*Robot broke on the way. Fixed in the car. Showed up. Ran 98%.*
+
+</td>
+</tr>
+</table>
 
 </div>
 
