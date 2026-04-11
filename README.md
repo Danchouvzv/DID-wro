@@ -163,18 +163,7 @@
 
 ---
 
-## 🎥 Video Demonstrations
 
-<div align="center">
-
-| Challenge | YouTube Link |
-|:---:|:---:|
-| 🟠 Open Challenge | *(link to be added)* |
-| 🚧 Obstacle Challenge | *(link to be added)* |
-
-</div>
-
-> Each video demonstrates at least 30 seconds of autonomous driving per WRO 2026 rules §7.
 
 ---
 
