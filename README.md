@@ -1,50 +1,113 @@
-# 🤖 WRO 2026 — Future Engineers | Team DID | NIS S&Md Nauryzbay, Almaty
+<div align="center">
 
-> **Autonomous vehicle for WRO Future Engineers 2026 — Autopilot Autonomous Car Challenge**
-> Built on LEGO EV3 platform with CLEV3R (Basic Plus) programming language, implementing Ackermann steering geometry, rear differential, dual ultrasonic wall-following PID, and RGB-normalized color detection for obstacle avoidance and autonomous parking.
+# 🤖 Team DID — WRO Future Engineers 2026
+
+<img src="https://img.shields.io/badge/WRO-2026-blue?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xMiAyQzYuNDggMiAyIDYuNDggMiAxMnM0LjQ4IDEwIDEwIDEwIDEwLTQuNDggMTAtMTBTMTcuNTIgMiAxMiAyem0tMiAxNWwtNS01IDEuNDEtMS40MUwxMCAxNC4xN2w3LjU5LTcuNTlMMTkgOGwtOSA5eiIvPjwvc3ZnPg==&logoColor=white" />
+<img src="https://img.shields.io/badge/Platform-LEGO%20EV3-red?style=for-the-badge" />
+<img src="https://img.shields.io/badge/Language-CLEV3R%20Basic%20Plus-orange?style=for-the-badge" />
+<img src="https://img.shields.io/badge/Control-PID%20%40%20100Hz-green?style=for-the-badge" />
+<img src="https://img.shields.io/badge/Success%20Rate-98%25-brightgreen?style=for-the-badge" />
+
+<br/>
+
+**Autonomous vehicle for WRO Future Engineers 2026 — Autopilot Autonomous Car Challenge**
+
+*LEGO EV3 · Ackermann Steering · Rear Differential · Dual-Ultrasonic PID · RGB-Normalized Color Detection*
+
+<br/>
+
+[![School](https://img.shields.io/badge/🏫%20NIS%20S%26Md%20Nauryzbay-Almaty%2C%20Kazakhstan-informational?style=flat-square)](https://github.com/Danchouvzv/DID-wro)
+[![Season](https://img.shields.io/badge/Season-WRO%202026-blueviolet?style=flat-square)](https://github.com/Danchouvzv/DID-wro)
+[![License](https://img.shields.io/badge/Repo-Public%20%E2%80%9412%20months-lightgrey?style=flat-square)](https://github.com/Danchouvzv/DID-wro)
+
+</div>
 
 ---
 
-## 🏫 Team Information
+## 👥 Team Information
 
-| Field | Details |
-|---|---|
-| **School** | NIS S&Md Nauryzbay, Almaty, Kazakhstan |
-| **Team Name** | DID |
-| **Members** | Alishirov Imran (Grade 9), Talgatov Daniyal (Grade 10), Kydyrbai Darkhan (Grade 10) |
-| **Category** | Future Engineers — Autonomous Car Challenge |
-| **Season** | WRO 2026 |
+<table align="center">
+<tr>
+  <th>Field</th>
+  <th>Details</th>
+</tr>
+<tr>
+  <td>🏫 <b>School</b></td>
+  <td>NIS S&Md Nauryzbay, Almaty, Kazakhstan</td>
+</tr>
+<tr>
+  <td>🏷️ <b>Team Name</b></td>
+  <td><b>DID</b></td>
+</tr>
+<tr>
+  <td>👤 <b>Members</b></td>
+  <td>Alishirov Imran (Grade 9) · Talgatov Daniyal (Grade 10) · Kydyrbai Darkhan (Grade 10)</td>
+</tr>
+<tr>
+  <td>🏆 <b>Category</b></td>
+  <td>Future Engineers — Autonomous Car Challenge</td>
+</tr>
+<tr>
+  <td>📅 <b>Season</b></td>
+  <td>WRO 2026</td>
+</tr>
+</table>
+
+---
+
+## 📊 Performance at a Glance
+
+<div align="center">
+
+| Metric | Value |
+|:---|:---:|
+| 🚗 Operating Speed | `0.41 m/s` |
+| ⏱️ 3-Lap Time (est.) | `~88 s` / 180 s limit |
+| ✅ Open Challenge | **98%** success (n=50) |
+| 🚧 Obstacle Challenge | **92%** success (n=50) |
+| 🅿️ Autonomous Parking | **87%** success (n=30) |
+| 🔁 PID Frequency | **100 Hz** |
+| 📏 Total Test Distance | **> 5 km** |
+| ⚖️ Weight | `1.30 kg` / 1.50 kg limit |
+| 📐 Dimensions | `185 × 130 × 145 mm` |
+
+</div>
 
 ---
 
 ## 📸 Team & Vehicle Photos
 
-> *Place your team photo and vehicle photos (front, back, left, right, top, bottom) in `/docs/photos/` and link them here.*
+> Place your team photo and vehicle photos in `/docs/photos/` and link them here.
 
-| View | Photo |
-|---|---|
-| Team Photo | `docs/photos/team.jpg` |
-| Front | `docs/photos/front.jpg` |
-| Back | `docs/photos/back.jpg` |
-| Left | `docs/photos/left.jpg` |
-| Right | `docs/photos/right.jpg` |
-| Top | `docs/photos/top.jpg` |
-| Bottom | `docs/photos/bottom.jpg` |
+<div align="center">
+
+| 👥 Team | 🔵 Front | 🔴 Back | ◀️ Left | ▶️ Right | 🔼 Top | 🔽 Bottom |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| `docs/photos/team.jpg` | `docs/photos/front.jpg` | `docs/photos/back.jpg` | `docs/photos/left.jpg` | `docs/photos/right.jpg` | `docs/photos/top.jpg` | `docs/photos/bottom.jpg` |
+
+</div>
 
 ---
 
 ## 🎥 Video Demonstrations
 
+<div align="center">
+
 | Challenge | YouTube Link |
-|---|---|
-| Open Challenge | *(link to be added)* |
-| Obstacle Challenge | *(link to be added)* |
+|:---:|:---:|
+| 🟠 Open Challenge | *(link to be added)* |
+| 🚧 Obstacle Challenge | *(link to be added)* |
+
+</div>
 
 > Each video demonstrates at least 30 seconds of autonomous driving per WRO 2026 rules §7.
 
 ---
 
 ## 📂 Repository Structure
+
+<details>
+<summary><b>Click to expand full file tree</b></summary>
 
 ```
 wro2026-team-did/
@@ -72,6 +135,8 @@ wro2026-team-did/
 │   └── test-log.md              ← PID tuning iterations log (50+ runs documented)
 └── CHANGELOG.md                 ← Version history: V1.0 → V2.0 → V3.0
 ```
+
+</details>
 
 ---
 
@@ -138,11 +203,11 @@ The vehicle can tilt 54.6° before rollover — well above field requirement.
 
 ### 1.5 Mechanical Iteration Log
 
-| Version | Key Change | Problem Solved |
-|---|---|---|
-| V1.0 | Parallel steering, solid rear axle | Baseline — high backlash, 22 mm corner deviation |
-| V2.0 | Ackermann trapezoid, 2-point steering bracket, bevel differential | Reduced corner deviation to 7 mm; eliminated scrub |
-| V3.0 | Beige low-friction axles in hub joints, EV3 brick lowered, light-shielded color sensor | Eliminated sensor glare; CoG dropped 8 mm; 98% Open Challenge success rate |
+| Version | Date | Key Change | Result |
+|:---:|:---:|---|:---:|
+| 🔴 **V1.0** | Nov 2025 | Parallel steering, solid rear axle | 54% |
+| 🟡 **V2.0** | Jan 2026 | Ackermann trapezoid, bevel differential, 30° sensors | 78% |
+| 🟢 **V3.0** | Feb 2026 | Low-friction axles, light shield, CoG lowered, dynamic speed | **98%** |
 
 ---
 
@@ -432,30 +497,50 @@ We evaluated using a Pixy2 camera for color pillar detection. Rejection rational
 ### 4.3 Risk Matrix
 
 | Risk | Likelihood | Impact | Mitigation |
-|---|---|---|---|
-| US sensor echo loss in corners | Medium | High | 30° sensor angle; speed reduction on corner entry |
-| Battery voltage sag causing US drift | Medium | High | S-Curve acceleration; checked battery before each round |
-| Color sensor ambient light interference | Medium | High | Light-shielding collar; two-point calibration |
-| Ackermann backlash in steering | Low | Medium | Beige low-friction axles; two-bracket steering mount |
-| Integral windup in PID | Medium | Medium | Anti-windup clamp ±15° on integral term |
-| Pillar detection at glancing angle | High | Medium | US distance threshold + color confirmation logic |
+|---|:---:|:---:|---|
+| US sensor echo loss in corners | 🟡 Medium | 🔴 High | 30° sensor angle; speed reduction on corner entry |
+| Battery voltage sag causing US drift | 🟡 Medium | 🔴 High | S-Curve acceleration; checked battery before each round |
+| Color sensor ambient light interference | 🟡 Medium | 🔴 High | Light-shielding collar; two-point calibration |
+| Ackermann backlash in steering | 🟢 Low | 🟡 Medium | Beige low-friction axles; two-bracket steering mount |
+| Integral windup in PID | 🟡 Medium | 🟡 Medium | Anti-windup clamp ±15° on integral term |
+| Pillar detection at glancing angle | 🔴 High | 🟡 Medium | US distance threshold + color confirmation logic |
 
 ### 4.4 Testing & Validation
 
-- **Total test runs:** 100+ (>5 km total distance)
-- **Open Challenge success rate:** 98% (V3.0)
-- **Obstacle Challenge success rate:** 92% (V3.0)
-  - Remaining 8% failures: ultrasonic echo anomalies from pillar corner edges (identified failure mode; mitigated by PID re-entry timeout)
-- **PID tuning iterations documented:** 15 sessions (see `tests/test-log.md`)
-- **Parking success rate:** 87%
+<div align="center">
+
+| Metric | Result |
+|:---|:---:|
+| 🔢 Total test runs | **100+** |
+| 📏 Total distance driven | **> 5 km** |
+| ✅ Open Challenge (V3.0) | **98%** |
+| 🚧 Obstacle Challenge (V3.0) | **92%** |
+| 🅿️ Autonomous Parking | **87%** |
+| 📓 PID tuning sessions | **15** (see `tests/test-log.md`) |
+
+</div>
+
+> Remaining 8% obstacle failures: ultrasonic echo anomalies from pillar corner edges — identified failure mode, mitigated by PID re-entry timeout.
 
 ### 4.5 Version History
 
-| Version | Date | Changes | Success Rate (OC) |
-|---|---|---|---|
-| V1.0 | 2025-11 | Initial build, parallel steer, solid axle, 0° sensors | 54% |
+<div align="center">
+
+```
+                    SUCCESS RATE PROGRESSION
+
+  54% ████████░░░░░░░░░░░░  V1.0  Nov 2025  (baseline)
+  78% ████████████░░░░░░░░  V2.0  Jan 2026  (+Ackermann + differential)
+  98% ███████████████████░  V3.0  Feb 2026  (+light shield + dynamic speed)
+```
+
+</div>
+
+| Version | Date | Key Changes | Success Rate |
+|:---:|:---:|---|:---:|
+| V1.0 | 2025-11 | Parallel steer, solid axle, 0° sensors | 54% |
 | V2.0 | 2026-01 | Ackermann linkage, rear differential, 30° sensors | 78% |
-| V3.0 | 2026-02 | Low-friction axles, light shield, CoG lowered, dynamic speed | 98% |
+| **V3.0** | **2026-02** | **Low-friction axles, light shield, CoG lowered, dynamic speed** | **98%** |
 
 ---
 
@@ -514,33 +599,41 @@ See `tests/test-log.md` for the full 15-session tuning log with metrics.
 
 ## 📋 Component Specifications Summary
 
+<div align="center">
+
 | Component | Model | Key Spec |
-|---|---|---|
-| Controller | LEGO EV3 Intelligent Brick | 300 MHz ARM9, 64 MB RAM |
-| Drive Motor | EV3 Large Motor | 40 N·cm stall torque, 160 RPM |
-| Steering Motor | EV3 Medium Motor | 12 N·cm stall torque |
-| Distance Sensor × 2 | EV3 Ultrasonic | 5–250 cm, 40 kHz |
-| Color Sensor | EV3 Color (Mode 4 Raw RGB) | 12 mm mount height |
-| Battery | EV3 Li-Ion Pack | 7.4 V, 2050 mAh |
-| Steering Geometry | Ackermann trapezoid | ±4° from ideal at max lock |
-| Rear Axle | LEGO bevel differential | Part 6573 |
-| Tires | LEGO 56 mm rubber | 56 × 26 ZR |
+|:---|:---|:---:|
+| 🧠 Controller | LEGO EV3 Intelligent Brick (45500) | 300 MHz ARM9, 64 MB RAM |
+| ⚙️ Drive Motor | EV3 Large Motor (45502) | 40 N·cm stall, 160 RPM |
+| 🔩 Steering Motor | EV3 Medium Motor (45503) | 12 N·cm stall torque |
+| 📡 Distance Sensor ×2 | EV3 Ultrasonic (45504) | 5–250 cm, 40 kHz |
+| 🌈 Color Sensor | EV3 Color — Mode 4 Raw RGB (45506) | 12 mm mount height |
+| 🔋 Battery | EV3 Li-Ion Pack (45501) | 7.4 V, 2050 mAh |
+| 📐 Steering Geometry | Ackermann trapezoid | ±4° from ideal at max lock |
+| ⚙️ Rear Axle | LEGO bevel differential | Part #6573 |
+| 🟢 Tires | LEGO 56 mm rubber | 56 × 26 ZR |
+
+</div>
 
 ---
 
 ## 📊 Performance Summary
 
-| Metric | Value |
-|---|---|
-| Vehicle dimensions | 185 × 130 × 145 mm (within 300×200×300 mm limit) |
-| Vehicle weight | 1.30 kg (limit: 1.50 kg) |
-| Operating speed | 0.41 m/s |
-| 3-lap estimated time | ~88 seconds (limit: 180 s) |
-| Open Challenge success rate | 98% (V3.0, n=50 runs) |
-| Obstacle Challenge success rate | 92% (V3.0, n=50 runs) |
-| Autonomous parking success | 87% (n=30 runs) |
-| PID control frequency | 100 Hz |
-| Total test distance | >5 km |
+<div align="center">
+
+| Metric | Value | Limit / Note |
+|:---|:---:|:---:|
+| 📐 Vehicle dimensions | `185 × 130 × 145 mm` | ≤ 300×200×300 mm ✅ |
+| ⚖️ Vehicle weight | `1.30 kg` | ≤ 1.50 kg ✅ |
+| 🚀 Operating speed | `0.41 m/s` | 60–70% PWM |
+| ⏱️ 3-lap estimated time | `~88 s` | ≤ 180 s ✅ |
+| ✅ Open Challenge | **98%** | V3.0, n=50 |
+| 🚧 Obstacle Challenge | **92%** | V3.0, n=50 |
+| 🅿️ Autonomous Parking | **87%** | n=30 |
+| 🔁 PID Frequency | `100 Hz` | CLEV3R Basic Plus |
+| 📏 Total Test Distance | `> 5 km` | 100+ runs |
+
+</div>
 
 ---
 
@@ -559,12 +652,27 @@ The full Engineering Journal is available at `docs/engineering-journal.pdf`. It 
 
 ## 📜 License & Rules Compliance
 
-- Repository is **public** and will remain public for at least **12 months** after WRO 2026 International Final (per rule §7)
-- All code written entirely by team members (Alishirov Imran, Talgatov Daniyal, Kydyrbai Darkhan)
-- No differential-drive kinematics used (rule §11.3 compliant)
-- Vehicle dimensions: 185×130×145 mm — within 300×200×300 mm limit (rule §9.17)
-- One drive motor, one steering motor — compliant with rule §11.13
+| Rule | Requirement | Status |
+|:---|:---|:---:|
+| §7 | Repository public for ≥12 months after International Final | ✅ |
+| §9.10–9.11 | Single button start | ✅ |
+| §9.17 | Vehicle ≤ 300×200×300 mm | ✅ `185×130×145 mm` |
+| §11.3 | Drive wheels physically coupled | ✅ Bevel differential |
+| §11.13 | One drive motor, one steering motor | ✅ |
+| §13.9 | Lap lines detected autonomously | ✅ Color sensor |
+
+> All code written entirely by team members: Alishirov Imran, Talgatov Daniyal, Kydyrbai Darkhan.
 
 ---
 
-*WRO 2026 | Future Engineers | Team DID | NIS S&Md Nauryzbay, Almaty, Kazakhstan*
+<div align="center">
+
+**🤖 WRO 2026 · Future Engineers · Team DID**
+
+*NIS S&Md Nauryzbay · Almaty, Kazakhstan*
+
+[![GitHub](https://img.shields.io/badge/GitHub-DID--wro-181717?style=for-the-badge&logo=github)](https://github.com/Danchouvzv/DID-wro)
+
+*Alishirov Imran · Talgatov Daniyal · Kydyrbai Darkhan*
+
+</div>
