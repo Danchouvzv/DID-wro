@@ -3,7 +3,7 @@
 # 🤖 Team DID — WRO Future Engineers 2026
 
 <img src="https://img.shields.io/badge/WRO-2026-blue?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xMiAyQzYuNDggMiAyIDYuNDggMiAxMnM0LjQ4IDEwIDEwIDEwIDEwLTQuNDggMTAtMTBTMTcuNTIgMiAxMiAyem0tMiAxNWwtNS01IDEuNDEtMS40MUwxMCAxNC4xN2w3LjU5LTcuNTlMMTkgOGwtOSA5eiIvPjwvc3ZnPg==&logoColor=white" />
-<img src="https://img.shields.io/badge/Platform-Raspberry%20Pi%204B-red?style=for-the-badge" />
+<img src="https://img.shields.io/badge/Platform-Raspberry%20Pi%204B%20%2B%20Spike%20Hub-red?style=for-the-badge" />
 <img src="https://img.shields.io/badge/Language-Python-orange?style=for-the-badge" />
 <img src="https://img.shields.io/badge/Control-Camera%20%2B%20PID%20%40%2050Hz-green?style=for-the-badge" />
 <img src="https://img.shields.io/badge/Success%20Rate-98%25-brightgreen?style=for-the-badge" />
@@ -12,7 +12,7 @@
 
 **Autonomous vehicle for WRO Future Engineers 2026 — Raspberry Pi Autopilot Car Challenge**
 
-*Raspberry Pi 4B · Motor Driver/HAT · Ackermann Steering · Camera Vision · BNO055 Orientation · PID Navigation*
+*Raspberry Pi 4B main brain · Spike Hub motor control · Pi Camera Rev 1.3 · HuskyLens assist · Ackermann steering*
 
 <br/>
 
@@ -189,8 +189,8 @@ wro2026-team-did/
 │       ├── chassis-v1.step      ← Iteration 1 (for reference)
 │       └── chassis-v2.step      ← Iteration 2 (for reference)
 ├── src/
-│   ├── motor_control.py         ← Motor driver / HAT abstraction
-│   ├── sensor_fusion.py         ← Camera + BNO055 + distance sensors
+│   ├── motor_control.py         ← Spike Hub motor command interface
+│   ├── sensor_fusion.py         ← Pi Camera + HuskyLens + optional IMU
 │   ├── navigation.py            ← PID and path-following logic
 │   ├── mission_logic.py         ← State machine: Open & Obstacle challenge
 │   └── calibration.py           ← Camera, IMU, and motor calibration
@@ -207,12 +207,15 @@ wro2026-team-did/
 
 ### 1.1 Chassis & Kinematic Architecture
 
-The vehicle is built around a **Raspberry Pi as the main controller**, not LEGO Spike. The Pi runs the robot logic, reads the camera and sensors, and sends motor commands to a separate motor driver/HAT. This is the core meaning of our "pure Raspberry" architecture: Raspberry Pi is the brain, while motor power is handled by hardware designed for motors.
+The vehicle is built around a **Raspberry Pi 4B as the main controller**. The Raspberry Pi runs the robot logic, reads the Pi Camera Rev 1.3 and HuskyLens, performs navigation decisions, and sends motor commands to a **LEGO Spike Hub**.
 
-The mechanical base uses a **rear-wheel-drive configuration** with a physically coupled rear axle. Depending on the final drivetrain, the motor layer supports two realistic options:
+In this design, Spike Hub is **not the main brain**. It is used as a motor-control layer because LEGO motors cannot be driven directly from Raspberry Pi GPIO. Raspberry Pi decides what the robot should do; Spike Hub executes the drive and steering commands.
 
-- **DC gear motors / servo steering** through a Raspberry-compatible motor driver or HAT
-- **LEGO Large Motors** through a Raspberry Pi Build HAT, if we keep LEGO motors in the final build
+The mechanical base uses a **rear-wheel-drive configuration** with a physically coupled rear axle:
+
+- **LEGO Technic Large Motor** for rear drive
+- **LEGO Spike motor** for front steering
+- **Ackermann steering system** for stable turns
 
 **Why rear-wheel drive + differential?**
 WRO 2026 rule §11.3 mandates that drive wheels must be physically coupled. A differential allows both rear wheels to rotate at different speeds in corners while transmitting torque from one motor, reducing wheel scrub compared with a rigid axle. During our initial tests with a rigid rear axle (V1.0), we measured a consistent lateral drift of ~15 mm per corner. After introducing the differential in V2.0, lateral deviation dropped to under 3 mm, improving PID tracking stability by approximately 80%.
@@ -235,18 +238,19 @@ Using a compact steering rack and angled tie-rods, we achieved a geometry that a
 
 ### 1.3 Drive System & Speed Calculation
 
-**Component:** DC gear motor through Raspberry-compatible motor driver/HAT
+**Components:** LEGO Technic Large Motor + Spike motor through Spike Hub
 
-- Motor control: PWM from Raspberry Pi to motor driver/HAT
-- Motor power: external battery rail through driver, not Raspberry Pi GPIO
-- Steering: servo or steering motor through the same control layer
+- Main logic: Raspberry Pi 4B
+- Motor execution: Spike Hub
+- Drive: LEGO Technic Large Motor
+- Steering: Spike motor connected to Ackermann linkage
 - Wheel diameter: 56.0 mm prototype tire
 
 **Theoretical speed:**
 
 $$v = \frac{\text{RPM}}{60} \times \pi \times d = \frac{165}{60} \times \pi \times 0.056 \approx 0.485 \text{ m/s (no-load)}$$
 
-**Operating speed** is limited to **60–70% PWM** in software to prevent motor overheating, reduce voltage sag, and keep camera-based correction stable:
+**Operating speed** is limited to **60–70% motor power** in software to prevent motor overheating, reduce voltage sag, and keep camera-based correction stable:
 
 $$v_{\text{operational}} \approx 0.41 \text{ m/s}$$
 
@@ -259,7 +263,7 @@ This leaves a ~92-second margin within the 3-minute round limit, allowing for ob
 ### 1.4 Weight Distribution & Structural Stability
 
 - Total vehicle weight: **1.30 kg** (limit: 1.50 kg)
-- Raspberry Pi and battery positioned **low and centered** (≈ 25 mm from ground plane)
+- Raspberry Pi, Spike Hub, and battery positioned **low and centered** (≈ 25 mm from ground plane)
 - Center of gravity height: **42 mm** from field surface
 - Wheelbase: 112 mm | Track: 118 mm
 
@@ -283,32 +287,35 @@ The vehicle can tilt 54.6° before rollover — well above field requirement.
 
 ### 2.1 Power System
 
-**Primary battery:** 2S Li-Ion / LiPo pack for motors + regulated 5 V rail for Raspberry Pi
+**Primary power:** Spike Hub battery for LEGO motors + regulated 5 V rail for Raspberry Pi
 
-- Nominal motor voltage: 7.4 V
-- Raspberry Pi supply: stable 5 V / 3 A via buck converter or HAT power input
-- Capacity target: 2000–3000 mAh
+- Motor power: Spike Hub battery and motor ports
+- Raspberry Pi supply: stable 5 V / 3 A via buck converter or dedicated power module
 - Estimated runtime at full load: ~45 min
 
 **Current budget:**
 
 | Rail / Port | Component | Avg Current | Peak Current |
 |---|---|---|---|
-| 5 V rail | Raspberry Pi 4B + camera | 700–1100 mA | 2500–3000 mA |
-| Motor rail | Drive DC motor / LEGO motor via HAT | 350–700 mA | 1000–1500 mA |
-| Motor rail / 5 V | Steering servo or steering motor | 150–300 mA | 500–800 mA |
-| I²C | BNO055 IMU | <15 mA | <15 mA |
-| I²C/UART/USB | HuskyLens or distance sensor module | 100–300 mA | 500 mA |
+| 5 V rail | Raspberry Pi 4B + Pi Camera Rev 1.3 | 700–1100 mA | 2500–3000 mA |
+| Spike Hub Port A | LEGO Technic Large Motor drive | 350–700 mA | 1000–1500 mA |
+| Spike Hub Port B | Spike motor steering | 150–300 mA | 500–800 mA |
+| I²C/UART/USB | HuskyLens | 100–300 mA | 500 mA |
+| I²C | Optional BNO055 IMU | <15 mA | <15 mA |
 
-Raspberry Pi GPIO pins must **never** drive motors directly. GPIO only carries low-current control signals such as PWM, I²C, UART, or direction pins. Actual motor current goes through a motor driver, HAT, or motor controller. A **software S-Curve acceleration ramp** (0→target over 0.3 s) limits instantaneous current spikes, preventing voltage sag that could corrupt camera frames, disturb I²C sensors, or reboot the Pi.
+Raspberry Pi GPIO pins must **never** drive motors directly. In our architecture, the Pi sends high-level drive and steering commands to Spike Hub, and Spike Hub powers the LEGO Technic Large Motor and Spike steering motor. A **software S-Curve acceleration ramp** (0→target over 0.3 s) limits instantaneous current spikes, preventing voltage sag, wheel slip, and camera-frame instability.
 
 ### 2.2 Sensor Selection & Placement
 
-#### Camera / HuskyLens — Visual Detection
+#### Pi Camera Rev 1.3 — Main Vision
 
-The primary vision path uses a Raspberry Pi camera or HuskyLens connected directly to the Raspberry Pi. This gives the robot enough local compute for lane/line detection, obstacle color classification, and parking marker recognition without using LEGO Spike as the main controller.
+The primary vision path uses **Pi Camera Rev 1.3** connected to the Raspberry Pi 4B. This camera is responsible for lane/line detection, obstacle color classification, and parking marker recognition.
 
-The camera is mounted on the front upper plate with a fixed downward angle so the field lines and obstacles remain inside the frame during turns. If HuskyLens is used, it acts as a vision coprocessor while Raspberry Pi still owns the mission logic.
+The camera is mounted on the front upper plate with a fixed downward angle so the field lines and obstacles remain inside the frame during turns.
+
+#### HuskyLens — Secondary Vision
+
+**HuskyLens** is used as an additional camera / vision helper. It can assist with color/object recognition, but Raspberry Pi still owns the final mission logic and decides what command should be sent to Spike Hub.
 
 #### Distance Sensors — Wall Following / Safety
 
@@ -322,9 +329,9 @@ Effective measurement range: depends on selected sensor
 Control loop target: 50 Hz stable loop on Raspberry Pi
 ```
 
-#### BNO055 IMU — Orientation
+#### Optional BNO055 IMU — Orientation
 
-The BNO055 is connected to Raspberry Pi over I²C and provides heading/orientation feedback. It is used to stabilize 90° turns, detect drift, and cross-check camera/side-distance decisions during corners.
+The BNO055 can be connected to Raspberry Pi over I²C for heading/orientation feedback. It is useful for stabilizing 90° turns, detecting drift, and cross-checking camera/side-distance decisions during corners.
 
 #### Downward Color / Camera ROI — Line & Obstacle Detection
 
@@ -337,18 +344,18 @@ If a separate downward color sensor is used, it is mounted around **12 mm from t
 > See `docs/diagrams/wiring-diagram.png` for full schematic.
 
 ```
-Raspberry Pi 4B (5V regulated)
-├── CSI/USB  ──── Pi Camera / USB Camera / HuskyLens
-├── I²C      ──── BNO055 IMU
-├── I²C/UART ──── Optional HuskyLens / distance sensors
-├── GPIO PWM ──── Motor driver / HAT control pins
-└── GPIO PWM ──── Steering servo / steering controller
+Raspberry Pi 4B (main brain, 5V regulated)
+├── CSI      ──── Pi Camera Rev 1.3 (main camera)
+├── USB/UART ──── HuskyLens (secondary camera)
+├── I²C      ──── Optional BNO055 IMU
+└── USB/BLE/UART ─ Spike Hub command link
 
-Motor battery rail (7.4V nominal)
-└── Motor driver / HAT ──── Drive motor + steering actuator
+LEGO Spike Hub (motor controller)
+├── Port A ──── LEGO Technic Large Motor (rear drive)
+└── Port B ──── Spike motor (Ackermann steering)
 ```
 
-All high-current motor wiring stays outside Raspberry Pi GPIO. Grounds between Raspberry Pi, driver, and motor battery are tied together only as required by the selected driver/HAT.
+All high-current motor wiring stays inside the LEGO Spike motor system. Raspberry Pi handles computation and communication; Spike Hub handles motor power.
 
 ### 2.4 Sensor Calibration Procedure
 
@@ -451,7 +458,7 @@ $$u(t) = K_p \cdot e(t) + K_i \cdot \sum e(t)\,\Delta t + K_d \cdot \frac{e(t) -
 
 - Straight sections: 70% PWM (~0.41 m/s)
 - Corner entry ($|e| > 8$ cm or heading target changes): PWM reduced to 45% (~0.26 m/s)
-- Obstacle detected by camera / HuskyLens / distance sensor: PWM reduced to 30%
+- Obstacle detected by camera / HuskyLens / distance sensor: motor power reduced to 30%
 
 This dynamic speed prevents the integral windup that caused corner instability in tuning iterations 1–8.
 
@@ -539,12 +546,13 @@ High speed is required for Time Attack ranking, but camera processing and sensor
 
 **Why Raspberry Pi is the main controller:**
 
-We are moving away from LEGO Spike or EV3 as the main brain because Raspberry Pi gives us more freedom for camera processing, Python code, and sensor fusion. The trade-off is wiring complexity: Raspberry Pi is a computer, not a motor controller.
+We are moving away from LEGO Spike as the main brain because Raspberry Pi gives us more freedom for camera processing, Python code, and sensor fusion. Spike Hub stays in the system as the motor controller, which is exactly the job it handles well.
 
-- Raspberry Pi handles mission logic, camera frames, BNO055 heading, and PID
-- Motor current is handled by a motor driver, HAT, or Build HAT
-- LEGO Large Motors remain possible only if we use Build HAT or another compatible controller
-- Non-LEGO DC motors are simpler electrically and cheaper, but require mechanical adaptation
+- Raspberry Pi 4B handles mission logic, Pi Camera Rev 1.3 frames, HuskyLens data, and PID
+- Spike Hub handles LEGO motor power and low-level motor execution
+- LEGO Technic Large Motor is used for rear drive
+- Spike motor is used for Ackermann steering
+- This keeps Raspberry Pi as the brain while using Spike Hub only where it is strong: LEGO motor control
 
 **Trade-off 2: Sensor Placement Angle**
 
@@ -563,7 +571,7 @@ We are moving away from LEGO Spike or EV3 as the main brain because Raspberry Pi
 |---|:---:|:---:|---|
 | Camera glare / exposure shift | 🟡 Medium | 🔴 High | Fixed exposure; calibration; ROI filtering |
 | Battery voltage sag causing Pi reboot | 🟡 Medium | 🔴 High | Separate regulated 5 V rail; S-Curve acceleration |
-| Motor driver overheating | 🟡 Medium | 🔴 High | Current-rated driver/HAT; speed ramp; airflow |
+| Spike Hub motor overload | 🟡 Medium | 🔴 High | Speed ramp; current-aware testing; avoid stalled steering |
 | I²C sensor noise | 🟡 Medium | 🟡 Medium | Short wires; shared ground; sensor sanity checks |
 | Ackermann backlash in steering | 🟢 Low | 🟡 Medium | Beige low-friction axles; two-bracket steering mount |
 | Integral windup in PID | 🟡 Medium | 🟡 Medium | Anti-windup clamp ±15° on integral term |
@@ -615,12 +623,13 @@ We are moving away from LEGO Spike or EV3 as the main brain because Raspberry Pi
 **Required hardware:**
 
 - Raspberry Pi 4B
-- Raspberry Pi Camera, USB camera, or HuskyLens
-- BNO055 IMU
-- Motor driver / HAT rated for the selected drive motor
-- Drive DC gear motor, or LEGO Large Motor through Build HAT
-- Steering servo, or LEGO steering motor through Build HAT
-- 2S Li-Ion / LiPo battery for motors
+- LEGO Spike Hub
+- Pi Camera Rev 1.3 as the main camera
+- HuskyLens as the secondary camera
+- LEGO Technic Large Motor for rear drive
+- Spike motor for steering
+- Optional BNO055 IMU
+- Spike Hub battery / power system for motors
 - 5 V / 3 A regulated supply for Raspberry Pi
 - Physically coupled rear axle / differential
 - Technic-compatible or custom chassis parts per CAD model
@@ -630,22 +639,25 @@ We are moving away from LEGO Spike or EV3 as the main brain because Raspberry Pi
 - Raspberry Pi OS
 - Python 3
 - OpenCV
-- GPIO/PWM library for the selected motor driver/HAT
-- BNO055 / camera libraries
+- Pi Camera library
+- HuskyLens communication library or serial/I²C interface
+- Spike Hub communication method for motor commands
+- Optional BNO055 library
 
 ### 5.2 Build Instructions
 
 1. Build the chassis from `docs/cad/chassis-v3.step` or the current CAD export
-2. Install Raspberry Pi low and centered, with access to camera and GPIO headers
-3. Connect the drive and steering actuators through the motor driver/HAT
-4. Mount the camera so lane lines, pillars, and parking markers stay inside the ROI
-5. Mount BNO055 away from high-current motor wiring
-6. Verify that Raspberry Pi receives stable 5 V while motors accelerate
+2. Install Raspberry Pi 4B and Spike Hub low and centered
+3. Connect the LEGO Technic Large Motor to the rear drivetrain through Spike Hub
+4. Connect the Spike motor to the Ackermann steering linkage through Spike Hub
+5. Mount Pi Camera Rev 1.3 so lane lines, pillars, and parking markers stay inside the ROI
+6. Mount HuskyLens as the secondary camera with a clear forward view
+7. Verify that Raspberry Pi receives stable 5 V while Spike Hub accelerates the motors
 
 ### 5.3 Software Upload & Run
 
 1. Install Raspberry Pi OS and project Python dependencies
-2. Enable camera, I²C, and any GPIO/PWM interfaces required by the driver/HAT
+2. Enable Pi Camera, HuskyLens communication, and the Spike Hub command interface
 3. Run `python src/calibration.py` on the field surface
 4. Start the robot with `python src/mission_logic.py`
 5. Start vehicle per competition procedure:
@@ -672,13 +684,14 @@ See `tests/test-log.md` for the full 15-session tuning log with metrics.
 
 | Component | Model | Key Spec |
 |:---|:---|:---:|
-| 🧠 Controller | Raspberry Pi 4B | Python, OpenCV, GPIO/I²C |
-| ⚙️ Motor Interface | Motor driver / HAT / Build HAT | Required between Pi and motors |
-| ⚙️ Drive Motor | DC gear motor or LEGO Large Motor via Build HAT | PWM-controlled |
-| 🔩 Steering Actuator | Servo or LEGO motor via Build HAT | Angle-controlled steering |
-| 📷 Vision | Pi Camera / USB Camera / HuskyLens | Lines, pillars, parking markers |
-| 🧭 IMU | BNO055 | Heading and turn stabilization |
-| 🔋 Battery | 2S motor pack + regulated 5 V Pi rail | Separate motor and logic power |
+| 🧠 Main Controller | Raspberry Pi 4B | Python, OpenCV, mission logic |
+| ⚙️ Motor Controller | LEGO Spike Hub | Executes motor commands from Pi |
+| ⚙️ Drive Motor | LEGO Technic Large Motor | Rear drive |
+| 🔩 Steering Actuator | Spike motor | Ackermann steering |
+| 📷 Main Vision | Pi Camera Rev 1.3 | Lines, pillars, parking markers |
+| 👁️ Secondary Vision | HuskyLens | Additional object/color recognition |
+| 🧭 IMU | Optional BNO055 | Heading and turn stabilization |
+| 🔋 Battery | Spike Hub battery + regulated 5 V Pi rail | Separate motor and compute power |
 | 📐 Steering Geometry | Ackermann trapezoid | ±4° from ideal at max lock |
 | ⚙️ Rear Axle | Physically coupled axle / differential | WRO drivetrain compliance |
 | 🟢 Tires | 56 mm prototype rubber | 56 × 26 ZR |
